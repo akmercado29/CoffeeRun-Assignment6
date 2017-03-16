@@ -11,4 +11,6 @@
 
     formHandler.addSubmitHandler(myTruck.createOrder.bind(myTruck));
     console.log(formHandler);
+
+    formHandler.addSlideHandler(); //For Chapter10 Silver challenge
 })(window);

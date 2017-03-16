@@ -8,6 +8,52 @@
 </head>
 
 <body class="container">
+
+  <!-- Achievement modal -->
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><center>New Achievement!</center></h4>
+                </div>
+                <div class="modal-body">
+                    <p>Congratulations! You have unlocked a new achievement with your amazing intensity and commitment to flavor.</p>
+                    <br>
+                    <p>Would you like to use your achievement?</p>
+                </div>
+                <div class="modal-footer">
+                    <center>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-primary" id="yes">Yes</button>
+                    </center>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error modal -->
+    <div id="emailError" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Missing Email!</h4>
+                </div>
+                <center>
+                    <label>
+                        <font color="red">Please enter your email and submit again to choose your powerup!</font>
+                    </label>
+                </center>
+                <div class="modal-footer">
+                    <center><button type="button" class="btn btn-primary" data-dismiss="modal">OK</button></center>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <header>
         <h1>CoffeeRun</h1>
     </header>
@@ -41,9 +87,16 @@
                 Grande
               </label>
                     </div>
+                    <div class="radio">
+                        <!-- for chapater 10 bronze challenge-->
+                        <label>
+                <input type="radio" name="size" value="Coffee-zilla">
+                Coffee-zilla
+              </label>
+                    </div>
                     <div class="form-group">
                         <label for="flavorShot">Flavor Shot</label>
-                        <select id="flavorShot" class="form-control" name="favor">
+                        <select id="flavorShot" class="form-control" name="flavor">
                   <option value="">None</option>
                   <option value="caramel">Caramel</option>
                   <option value="almond">Almond</option>
@@ -51,8 +104,8 @@
                 </select>
                     </div>
                     <div class="form-group">
-                        <label for="strenghtLevel">Caffeine Rating</label>
-                        <input name="strenght" id="strenghtLevel" type="range" value="30">
+                        <label id="strengthLabel" for="strengthLevel"><font color="green">Caffeine Rating: 30</font></label>
+                        <input name="strength" id="strengthLevel" type="range" value="30">
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                     <button type="reset" class="btn btn-default">Reset</button>
@@ -60,7 +113,46 @@
             </div>
         </div>
     </section>
+
+    <!--  Power up form -->
+    <section id="powerup-form" hidden="true">
+    <div class="panel panel-default">
+        <div class="panel-body">
+          <form achievement-form="form">
+                <div>
+                    <form>
+                        <div class="form-group">
+                            <div class="radio">
+                                <label>
+            <input type="radio" name="powerUp" value="timeTravel">
+            Time Travel
+            </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+            <input type="radio" name="powerUp" value="mindReading">
+            Mind Reading
+            </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+          <input type="radio" name="powerUp" value="bugFree" checked>
+          Bug-free Code
+        </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <center><button type="button" class="btn btn-primary">OK</button></center>
+                </div>
+          </form>
+        </div>
+    </div>
+  </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" charset="utf-8"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/js/bootstrap-modalmanager.min.js" charset="utf-8"></script> -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" charset="utf-8"></script>
     <script src="scripts/formhandler.js" charset="utf-8"></script>
     <script src="scripts/datastore.js" charset="utf-8"></script>
     <script src="scripts/truck.js" charset="utf-8"></script>

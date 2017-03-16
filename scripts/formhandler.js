@@ -2,7 +2,7 @@
     'use strict';
     var App = window.App || {};
     var $ = window.jQuery;
-
+    var noEmail = false;
     function FormHandler(selector) {
         if (!selector) {
             throw new Error('No selector provided');
@@ -15,7 +15,8 @@
     }
 
     FormHandler.prototype.addSubmitHandler = function(fn) {
-        console.log('Setting submit handler form');
+        console.log('Setting submit handler for form');
+
         this.$formElement.on('submit', function(event) {
             event.preventDefault();
 
@@ -24,10 +25,55 @@
                 data[item.name] = item.value;
                 console.log(item.name + ' is ' + item.value);
             });
-            console.log(data);
-            fn(data);
-            this.reset();
-            this.elements[0].focus();
+
+            //Achievement modal
+            if (data.size == 'Coffee-zilla' && data.flavor != '' && data.strength == '100') {
+                $('#myModal').modal('show');
+
+                document.getElementById('yes').addEventListener('click', function() {
+
+                    if (data.emailAddress != '') {
+                        $('#myModal').modal('hide');
+                        $('#powerup-form').show();
+
+                         console.log(data);
+                         fn(data);
+                         this.reset();
+
+                    } else {
+                        $('#myModal').modal('hide');
+                        if (noEmail == false){
+                          $('#emailError').modal('show');
+                        }
+                        noEmail = true;
+                    }
+                }.bind(this));
+
+            }
+            else {
+                console.log(data);
+                fn(data);
+                this.reset()
+                this.elements[0].focus();
+            }
+        });
+    };
+
+    //Silver Challenge from Chapter 10
+    FormHandler.prototype.addSlideHandler = function() {
+        var range = $('#strengthLevel');
+        var label = $('#strengthLabel');
+
+        this.$formElement.on('input', range, function() {
+            label.html('Caffeine Rating: ' + range.val());
+
+            if (range.val() < 34) {
+                label.css('color', 'green');
+            } else if (range.val() > 33 && range.val() < 67) {
+                label.css('color', 'yellow');
+            } else if (range.val() > 66) {
+                label.css('color', 'red');
+            }
         });
     };
 
