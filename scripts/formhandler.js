@@ -3,6 +3,7 @@
     var App = window.App || {};
     var $ = window.jQuery;
     var noEmail = false;
+
     function FormHandler(selector) {
         if (!selector) {
             throw new Error('No selector provided');
@@ -36,24 +37,33 @@
                         $('#myModal').modal('hide');
                         $('#powerup-form').show();
 
-                         console.log(data);
-                         fn(data);
-                         this.reset();
+                        console.log(data);
+                        fn(data);
+
+                        //resets label and intesity number color
+                        $('#strengthLabel').html('Caffeine Rating: 30');
+                        $('#strengthLabel').css('color', 'green');
+
+                        this.reset();
 
                     } else {
                         $('#myModal').modal('hide');
-                        if (noEmail == false){
-                          $('#emailError').modal('show');
+                        if (noEmail == false) {
+                            $('#emailError').modal('show');
                         }
                         noEmail = true;
                     }
                 }.bind(this));
 
-            }
-            else {
+            } else {
                 console.log(data);
                 fn(data);
-                this.reset()
+                this.reset();
+
+                //resets label and intesity number color
+                $('#strengthLabel').html('Caffeine Rating: 30');
+                $('#strengthLabel').css('color', 'green');
+
                 this.elements[0].focus();
             }
         });
